@@ -29,4 +29,7 @@ RUN git clone --single-branch --branch mysql-8.0.14 --depth 1 https://github.com
 WORKDIR /opt/mysql-server
 # build mysql-server
 RUN cmake . -DDOWNLOAD_BOOST=1 -DWITH_BOOST=/tmp/boost -DFORCE_INSOURCE_BUILD=1
+# Install Dockerize
+ENV DOCKERIZE_VERSION v0.6.1
+RUN curl -L https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | tar -C /usr/local/bin -xzvf -
 ADD dev/*.sh ./
