@@ -1,5 +1,5 @@
 .PHONY: docker
-IMAGE_NAME := exp-docker
+IMAGE_NAME := ryosan470/mysql-dev-docker
 
 docker:
 	docker build -t ${IMAGE_NAME} .
