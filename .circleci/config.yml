@@ -7,16 +7,20 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Copy code to storage directory
-          command: cp -r src storage/
+          name: Copy tool to root directory
+          command: |
+            rm -r storage
+            mkdir -p storage
+            cp -r src/* storage/
+            cp dev/*.sh ./
       - run:
           name: Build your plugin
           command: |
-            ./dev/build.sh
+            ./build.sh
       - run:
           name: Launch MySQL
           command: |
-            ./dev/serve.sh
+            ./serve.sh
       - run:
           name: Wait for launching MySQL
           command: |
@@ -24,7 +28,7 @@ jobs:
       - run:
           name: Install plugin to MySQL
           command: |
-            /dev/install_plugin.sh
+            ./install_plugin.sh
       - run:
           name: Show engine
           command: |
