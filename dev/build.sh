@@ -1,5 +1,5 @@
 #!/bin/bash
-STORAGE_ENGINES=("example" "fizzbuzz")
+STORAGE_ENGINES=("fizzbuzz")
 for engine in ${STORAGE_ENGINES[@]}; do
     make -j4 ${engine}
 done

@@ -69,6 +69,7 @@ class ha_fizzbuzz : public handler {
   String buffer;
   int now_pos;
   bool stop;
+  std::vector<std::string> stored_records;
 
  public:
   ha_fizzbuzz(handlerton *hton, TABLE_SHARE *table_arg);
@@ -102,7 +103,7 @@ class ha_fizzbuzz : public handler {
       an engine that can only handle statement-based logging. This is
       used in testing.
     */
-    return HA_BINLOG_STMT_CAPABLE;
+    return HA_BINLOG_STMT_CAPABLE | HA_BINLOG_ROW_CAPABLE;
   }
 
   /** @brief

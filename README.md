@@ -1,4 +1,4 @@
-# Writing a custom storage engine for MySQL
+# MySQL Fizzbuzz Storage Engine
 Reference: https://dev.mysql.com/doc/internals/en/custom-engine.html
 
 # Motivation
@@ -8,9 +8,9 @@ To understand the MySQL storage engine insight.
 
 - [x] CREATE TABLE
 - [x] `SELECT`
-- [ ] `INSERT`
-- [ ] `UPDATE`
-- [ ] `DELETE`
+- [x] `INSERT`
+- [x] `UPDATE`
+- [x] `DELETE`
 - [ ] Index
 - [ ] Transactions
 
