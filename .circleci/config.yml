@@ -16,15 +16,19 @@ jobs:
       - run:
           name: Build your plugin
           command: |
+            cmake .
             ./build.sh
       - run:
           name: Launch MySQL
           command: |
-            ./serve.sh
+            bash /entrypoint.sh mysqld
+          background: true
+          environments:
+            MYSQL_ALLOW_EMPTY_PASSWORD=true
       - run:
           name: Wait for launching MySQL
           command: |
-            dockerize -wait tcp://localhost:3306 -timeout 1m
+            dockerize -wait unix:///var/run/mysqld/mysqlx.sock -timeout 5m
       - run:
           name: Install plugin to MySQL
           command: |
