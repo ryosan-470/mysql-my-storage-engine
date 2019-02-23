@@ -1,0 +1,26 @@
+language: cpp
+
+env:
+  global:
+    - CMAKE_VERSION=3.13.3
+
+before_install:
+  - |
+    curl -L https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.tar.gz | tar zxf - && \
+    cd cmake-${CMAKE_VERSION} && \
+    ./configure && \
+    make -j4 && \
+    make install &&
+install:
+  - cd mysql-server
+  - cmake . -DDOWNLOAD_BOOST=1 -DWITH_BOOST=/tmp/boost -DFORCE_INSOURCE_BUILD=1
+
+before_script:
+  - rm -r mysql-server/storage/*
+  - cp -r src/* mysql-server/storage/
+  - cd mysql-server
+  - cmake .
+
+script:
+  - cd mysql-server
+  - make fizzbuzz
