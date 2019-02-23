@@ -3,12 +3,14 @@ dist: xenial
 
 git:
   depth: 1
+  submodules: false
 
 env:
   global:
     - CMAKE_VERSION=3.13.3
 
 before_install:
+  - git submodule update --init --recursive --depth 1
   - |
     curl -L https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.tar.gz | tar zxf - && \
     cd cmake-${CMAKE_VERSION} && \
